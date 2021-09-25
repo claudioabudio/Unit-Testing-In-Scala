@@ -10,4 +10,12 @@ class EmailSpec extends AnyFlatSpec {
         assert("claudio" === email.localPart)
         assert("gmail.com" === email.domain)
       }
+
+      it should "intercept the correct message when no '@' symbol is provided" in {
+          val exceptionThrown = intercept[IllegalArgumentException] {
+              Email("claudio_gmail.com")
+          }
+          assert(exceptionThrown.isInstanceOf[IllegalArgumentException])
+          assert(exceptionThrown.getMessage === "invalid email: does not contain '@' symbol")
+      }
 }
