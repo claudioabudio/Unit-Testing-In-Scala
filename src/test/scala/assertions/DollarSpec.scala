@@ -30,4 +30,11 @@ class DollarSpec extends AnyFlatSpec {
     }
   }
 
+  it should "have every dollar greater than 0, illustrates use of assume to cancel test if precondition not met" in {
+//      val dollarList = List(Dollars(1), Dollars(10), Dollars(100))
+        val dollarList : List[Dollars] = List()
+      assume(dollarList.nonEmpty, "The dollar list being returned by the API is empty")
+      dollarList.foreach(dollar => assert(dollar.amount > 0))
+  }
+
 }
