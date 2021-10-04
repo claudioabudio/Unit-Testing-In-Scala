@@ -39,4 +39,11 @@ class EqualitySpec extends UnitSpec {
     currency1 shouldBe currency2
   }
 
+  it should "match a 10 Usd and a 100 currencies as not equal" in {
+    val currency1 : Currency = "10 USD"
+    val currency2 : Currency = "100 USD"
+
+    currency1 should not be (currency2)
+  }
+
 }

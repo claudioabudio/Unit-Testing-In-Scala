@@ -9,6 +9,9 @@ trait CustomersDb {
   def saveCustomer(customer: Customer): Unit = customers += (customer.id -> customer)
   def getCustomer(id: UUID): Option[Customer] = customers.get(id)
   def numCustomers: Int = customers.size
+  def getExistingCustomer(email: String): Option[Customer] = {
+    customers.values.filter(customer => customer.email.toString == email).lastOption
+  }
 }
 
 trait ProductsDb {

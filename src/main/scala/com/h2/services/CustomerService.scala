@@ -22,7 +22,9 @@ trait CustomerService extends CustomersDb {
       val Array(year: String, month: String, day: String) = dateOfBirth.split("/")
       LocalDate.of(year.toInt, month.toInt, day.toInt)
     }
-
+    val existingCustomerIdOption = getExistingCustomer(email)
+    if (existingCustomerIdOption.isDefined)
+        return existingCustomerIdOption.get.id
     val customer = new Customer(first, last, Email(email), getDateOfBirth)
     saveCustomer(customer)
     customer.id
